@@ -49,7 +49,7 @@ function ServiceDetail() {
 
       <section className="px-6 md:px-10 py-20 grid grid-cols-1 lg:grid-cols-2 gap-16 border-b border-foreground">
         {/* IMAGE */}
-        <div className="relative w-full h-[420px] lg:h-full overflow-hidden border border-foreground">
+        <div className="relative w-full h-105 lg:h-full overflow-hidden border border-foreground">
           {s.image ? (
             <motion.img
               src={s.image}

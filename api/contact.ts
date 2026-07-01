@@ -15,11 +15,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const { name, company, email, asset, scope } = req.body;
 
     // 3. Trigger the email transmission using your newly verified subdomain
-    const data = await resend.emails.send({
-      // Crucial: The 'from' address MUST use your green-verified Resend subdomain prefix!
+    // FIX: Destructure { data, error } directly from the response
+    const { data, error } = await resend.emails.send({
       from: 'Website Form <info@mail.divinityconsult.org>', 
-      to: ['leads@divinityconsult.org'], 
-      reply_to: email, 
+      to: ['hello@divinityconsult.org'], 
+      replyTo: email, 
       subject: `⚡ New Project Brief from ${name} (${company})`,
       html: `
         <div style="font-family: monospace; padding: 20px; background-color: #F6F7F8; color: #000; border: 1px solid #000;">
@@ -35,8 +35,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       `,
     });
 
+    // Handle Resend API level issues (like an invalid domain or blocked account)
+    if (error) {
+      return res.status(400).json({ error: error.message });
+    }
+
     // 4. Return success back to your frontend React code
-    return res.status(200).json({ success: true, id: data.id });
+    // data.id will now resolve perfectly because 'data' is typed correctly by the SDK
+    return res.status(200).json({ success: true, id: data?.id });
 
   } catch (error: any) {
     // If anything fails (e.g. wrong API key), return the error status safely

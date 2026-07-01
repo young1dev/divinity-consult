@@ -17,6 +17,9 @@ export interface Service {
   image?: string;
 }
 
+import ndtAdvancedImg from '../assets/images/services/ndt-advanced.jpg';
+import qaQcImg from '../assets/images/services/qa-qc.jpg';
+
 export const SERVICES: Service[] = [
   {
     slug: "qa-qc",
@@ -33,7 +36,7 @@ export const SERVICES: Service[] = [
       "Manufacturing record book and final documentation review",
     ],
     industries: ["Oil & Gas", "Petrochemical", "Power", "Renewables"],
-    image: "images/services/ndt-advanced.jpg",
+    image: ndtAdvancedImg,
   },
   {
     slug: "asset-integrity",
@@ -49,7 +52,7 @@ export const SERVICES: Service[] = [
       "Turnaround and campaign inspection planning",
     ],
     industries: ["Refining", "Upstream Oil & Gas", "LNG", "Chemicals"],
-    image: "images/services/ndt-advanced.jpg",
+    image: ndtAdvancedImg,
   },
   {
     slug: "rope-access",
@@ -65,7 +68,7 @@ export const SERVICES: Service[] = [
       "Confined space access and rescue support",
     ],
     industries: ["Offshore", "Wind", "Civil Structures", "Telecom"],
-    image: "images/services/ndt-advanced.jpg",
+    image: ndtAdvancedImg,
   },
   {
     slug: "ndt-conventional",
@@ -81,7 +84,7 @@ export const SERVICES: Service[] = [
       "Visual Testing (VT) and basic material verification",
     ],
     industries: ["Fabrication", "Pipelines", "Pressure Equipment", "Structural"],
-    image: "images/services/ndt-advanced.jpg",
+    image: ndtAdvancedImg,
   },
   {
     slug: "ndt-advanced",
@@ -97,7 +100,7 @@ export const SERVICES: Service[] = [
       "Advanced corrosion mapping and automated UT",
     ],
     industries: ["Refining", "Petrochemical", "Power Generation", "Manufacturing"],
-    image: "images/services/ndt-advanced.jpg",
+    image: ndtAdvancedImg,
   },
   {
     slug: "inspection-engineering",
@@ -113,7 +116,7 @@ export const SERVICES: Service[] = [
       "Technical support for regulators and insurers",
     ],
     industries: ["Refining", "Upstream", "Chemicals", "Power"],
-    image: "images/services/ndt-advanced.jpg",
+    image: ndtAdvancedImg,
   },
 ];
 

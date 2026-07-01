@@ -43,12 +43,7 @@ function ServiceDetail() {
   const others = SERVICES.filter((x) => x.slug !== s.slug).slice(0, 3);
   const faqs = FAQS.filter((f) => f.scope === s.slug);
 
-  // Helper to dynamically fetch the asset from the src folder
-  const getAssetUrl = (path: string) => {
-    // If path is "/images/services/ndt-advanced.jpg", change it to "images/services/ndt-advanced.jpg"
-    const cleanPath = path.startsWith('/') ? path.substring(1) : path;
-    return new URL(`../../assets/${cleanPath}`, import.meta.url).href;
-  };
+  
   return (
     <div className="bg-background text-foreground">
       <PageHero section={`§ Service ${s.n}`} title={<>{s.t}</>} intro={s.long} />

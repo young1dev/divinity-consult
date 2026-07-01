@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { SERVICES } from "../lib/services";
 
-const BASE_URL = "https://high-ascension-antics.lovable.app";
+const BASE_URL = "https://divinityconsult.org";
 
 interface SitemapEntry {
   path: string;

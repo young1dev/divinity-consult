@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState, ChangeEvent, FormEvent } from "react";
-import ReactGA from "react-ga4";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -68,10 +67,21 @@ function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      ReactGA.event({
-        category: 'Contact',
-        action: 'Form_Submit'
-      })
+
+      const globalWindow = window as any;
+
+      if (globalWindow.gtag) {
+        // 3. Trigger your custom submit event to Google Analytics
+        globalWindow.gtag("event", "submit_contact_form", {
+          event_category: "Contact",
+          event_label: "Divinity Consult Technical Assessment Request",
+          // Optional: you can pass non-sensitive info to GA4 if you want to segment data
+          form_location: window.location.pathname,
+        });
+        console.log("Google Analytics submit event tracked successfully!");
+      } else {
+        console.log("Google Tag is not loaded yet (or blocked by an ad-blocker).");
+      }
 
       if (response.ok) {
         setSent(true);

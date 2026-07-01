@@ -112,6 +112,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "/favicon.svg", // Adjust name/extension if you are using a standard .ico file instead
       },
     ],
+    scripts: [
+      {
+        src: "https://googletagmanager.com",
+        async: true,
+      },
+      {
+        children: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-E9BEV0105T', { send_page_view: false });
+        `,
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,

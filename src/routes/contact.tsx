@@ -68,29 +68,32 @@ function Contact() {
         body: JSON.stringify(formData),
       });
 
-      const globalWindow = window as any;
-
-      if (globalWindow.gtag) {
-        // 3. Trigger your custom submit event to Google Analytics
-        globalWindow.gtag("event", "submit_contact_form", {
-          event_category: "Contact",
-          event_label: "Divinity Consult Technical Assessment Request",
-          // Optional: you can pass non-sensitive info to GA4 if you want to segment data
-          form_location: window.location.pathname,
-        });
-        console.log("Google Analytics submit event tracked successfully!");
-      } else {
-        console.log("Google Tag is not loaded yet (or blocked by an ad-blocker).");
+      if (!response.ok) {
+        throw new Error(`Server returned status: ${response.status}`);
       }
 
-      if (response.ok) {
-        setSent(true);
-        // Clear out the form inputs on successful send
-        setFormData({ name: "", company: "", email: "", asset: "", scope: "" });
-      } else {
-        throw new Error();
+      setSent(true);
+      setFormData({ name: "", company: "", email: "", asset: "", scope: "" });
+
+      try {
+        const globalWindow = window as any;
+        if (globalWindow.gtag) {
+          globalWindow.gtag("event", "qualify_lead", {
+            event_category: "Contact",
+            event_label: "Divinity Consult Technical Assessment Request",
+            form_location: window.location.pathname,
+          });
+          console.log("Google Analytics submit event tracked successfully!");
+        } else {
+          console.log("Google Tag is blocked or not loaded yet.");
+        }
+      } catch (gaErr) {
+        // Keeps the form functioning seamlessly even if an adblocker drops the GA tracker
+        console.warn("Analytics tracking bypassed contextually:", gaErr);
       }
+
     } catch (err) {
+      console.error("Submission failed:", err);
       setErrorMsg(
         "Failed to deliver brief. Please try emailing hello@divinityconsult.co directly.",
       );

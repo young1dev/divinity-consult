@@ -78,19 +78,38 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Divinity Consult — Engineering Inspection & Asset Integrity" },
+      { 
+        name: "description", 
+        content: "Independent engineering inspection, NDT, conventional & advanced testing, and asset integrity engineering services aligned with global API standards." 
+      },
+      { name: "author", content: "Divinity Consult" },
+      
+      // Open Graph (Facebook / LinkedIn Optimization)
+      { property: "og:title", content: "Divinity Consult — Engineering Inspection & Asset Integrity" },
+      { 
+        property: "og:description", 
+        content: "Independent engineering inspection, NDT testing, and asset integrity engineering services aligned with global standards." 
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:url", content: "https://divinityconsult.org" },
+      { property: "og:image", content: "https://divinityconsult.org/og-image.jpg" }, // Make sure to add an og-image to your public folder later!
+      
+      // Twitter Card Integration
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Divinity Consult — Engineering Inspection & Asset Integrity" },
+      { name: "twitter:description", content: "Independent engineering inspection, NDT, and asset integrity engineering services." },
+      { name: "twitter:image", content: "https://divinityconsult.org/og-image.jpg" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "icon",
+        type: "image/svg+xml",
+        href: "/favicon.svg", // Adjust name/extension if you are using a standard .ico file instead
       },
     ],
   }),

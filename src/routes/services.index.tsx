@@ -7,26 +7,29 @@ import { buildFAQSchema } from "@/lib/faqSchema";
 
 export const Route = createFileRoute("/services/")({
   head: ({ loaderData }) => {
-  const s = loaderData?.service;
-  const faqs = FAQS.filter((f) => f.scope === s?.slug);
+    const s = loaderData?.service;
+    const faqs = FAQS.filter((f) => f.scope === s?.slug);
 
-  return {
-    meta: [
-      { title: `${s?.t || "Service"} — Divinity Consult` },
-      { name: "description", content: s?.long },
-      { property: "og:title", content: "Services — Divinity Consult" },
-      { property: "og:description", content: "Inspection and integrity services for critical assets." },
-    ],
-    scripts: faqs.length
-      ? [
-          {
-            type: "application/ld+json",
-            children: JSON.stringify(buildFAQSchema(faqs)),
-          },
-        ]
-      : [],
-  };
-},
+    return {
+      meta: [
+        { title: `${s?.t || "Service"} — Divinity Consult` },
+        { name: "description", content: s?.long },
+        { property: "og:title", content: "Services — Divinity Consult" },
+        {
+          property: "og:description",
+          content: "Inspection and integrity services for critical assets.",
+        },
+      ],
+      scripts: faqs.length
+        ? [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify(buildFAQSchema(faqs)),
+            },
+          ]
+        : [],
+    };
+  },
   component: ServicesIndex,
 });
 

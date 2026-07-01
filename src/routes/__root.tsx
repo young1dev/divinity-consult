@@ -4,7 +4,6 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
-  useLocation,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -39,9 +38,9 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
+ useEffect(() => {
+  console.error(error);
+}, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -80,38 +79,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Divinity Consult — Engineering Inspection & Asset Integrity" },
-      {
-        name: "description",
-        content:
-          "Independent engineering inspection, NDT, conventional & advanced testing, and asset integrity engineering services aligned with global API standards.",
+      { 
+        name: "description", 
+        content: "Independent engineering inspection, NDT, conventional & advanced testing, and asset integrity engineering services aligned with global API standards." 
       },
       { name: "author", content: "Divinity Consult" },
-
+      
       // Open Graph (Facebook / LinkedIn Optimization)
-      {
-        property: "og:title",
-        content: "Divinity Consult — Engineering Inspection & Asset Integrity",
-      },
-      {
-        property: "og:description",
-        content:
-          "Independent engineering inspection, NDT testing, and asset integrity engineering services aligned with global standards.",
+      { property: "og:title", content: "Divinity Consult — Engineering Inspection & Asset Integrity" },
+      { 
+        property: "og:description", 
+        content: "Independent engineering inspection, NDT testing, and asset integrity engineering services aligned with global standards." 
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://divinityconsult.org" },
-      { property: "og:image", content: "https://divinityconsult.org/og-image.jpg" },
-
+      { property: "og:image", content: "https://divinityconsult.org/og-image.jpg" }, // Make sure to add an og-image to your public folder later!
+      
       // Twitter Card Integration
       { name: "twitter:card", content: "summary_large_image" },
-      {
-        name: "twitter:title",
-        content: "Divinity Consult — Engineering Inspection & Asset Integrity",
-      },
-      {
-        name: "twitter:description",
-        content:
-          "Independent engineering inspection, NDT, and asset integrity engineering services.",
-      },
+      { name: "twitter:title", content: "Divinity Consult — Engineering Inspection & Asset Integrity" },
+      { name: "twitter:description", content: "Independent engineering inspection, NDT, and asset integrity engineering services." },
       { name: "twitter:image", content: "https://divinityconsult.org/og-image.jpg" },
     ],
     links: [
@@ -122,7 +109,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "icon",
         type: "image/svg+xml",
-        href: "/favicon.svg",
+        href: "/favicon.svg", // Adjust name/extension if you are using a standard .ico file instead
       },
     ],
   }),
@@ -148,41 +135,6 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const location = useLocation();
-
-  useEffect(() => {
-    // 1. Guard check to ensure this ONLY runs in a physical browser
-    if (typeof window === 'undefined') return;
-
-    const MEASUREMENT_ID = 'G-E9BEV0105T';
-
-    const initNativeGA = () => {
-      // Inject the main Google tracking tag script into the document head
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
-      document.head.appendChild(script);
-
-      // Initialize the standard dataLayer array
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function gtag() {
-        window.dataLayer.push(arguments);
-      };
-
-      window.gtag('js', new Date());
-      window.gtag('config', MEASUREMENT_ID);
-      window._gaInitialized = true;
-    };
-
-    // 2. Initialize tracking once, or fire page views on route location updates
-    if (!window._gaInitialized) {
-      initNativeGA();
-    } else if (window.gtag) {
-      window.gtag('config', MEASUREMENT_ID, {
-        page_path: location.pathname + location.search,
-      });
-    }
-  }, [location]); // 👈 The hook now closes cleanly here!
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -193,12 +145,4 @@ function RootComponent() {
       <SiteFooter />
     </QueryClientProvider>
   );
-}
-
-declare global {
-  interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
-    _gaInitialized?: boolean;
-  }
 }

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState, ChangeEvent, FormEvent } from "react";
+import ReactGA from "react-ga4";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -67,12 +68,10 @@ function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      if (typeof window !== "undefined" && window.gtag) {
-        window.gtag("event", "Form_Submit", {
-          event_category: "Inquiry",
-          event_label: "Contact Us Page Form",
-        });
-      }
+      ReactGA.event({
+        category: 'Contact',
+        action: 'Form_Submit'
+      })
 
       if (response.ok) {
         setSent(true);

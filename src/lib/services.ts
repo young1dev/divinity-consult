@@ -23,7 +23,7 @@ import qaQcImg from '../assets/images/services/qa-qc.jpg';
 export const SERVICES: Service[] = [
   {
     slug: "qa-qc",
-    n: "01",
+    n: "01",  
     t: "QA / QC",
     short:
       "Independent quality assurance and quality control for fabrication, construction and maintenance activities.",

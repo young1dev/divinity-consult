@@ -1,18 +1,13 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
+  "version": 2,
+  "framework": "vite",
+  "routes": [
     {
-      "source": "/sitemap.xml",
-      "destination": "/sitemap.xml"
+      "handle": "filesystem"
     },
     {
-      "source": "/robots.txt",
-      "destination": "/robots.txt"
-    },
-    {
-      "source": "/:path((?!.*\\..*).*)",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "dest": "/"
     }
   ]
 }

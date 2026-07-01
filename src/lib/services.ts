@@ -33,7 +33,7 @@ export const SERVICES: Service[] = [
       "Manufacturing record book and final documentation review",
     ],
     industries: ["Oil & Gas", "Petrochemical", "Power", "Renewables"],
-    image: "/src/images/services/ndt-advanced.jpg",
+    image: "/images/services/ndt-advanced.jpg",
   },
   {
     slug: "asset-integrity",
@@ -49,7 +49,7 @@ export const SERVICES: Service[] = [
       "Turnaround and campaign inspection planning",
     ],
     industries: ["Refining", "Upstream Oil & Gas", "LNG", "Chemicals"],
-    image: "/src/images/services/ndt-advanced.jpg",
+    image: "/images/services/ndt-advanced.jpg",
   },
   {
     slug: "rope-access",
@@ -65,7 +65,7 @@ export const SERVICES: Service[] = [
       "Confined space access and rescue support",
     ],
     industries: ["Offshore", "Wind", "Civil Structures", "Telecom"],
-    image: "/src/images/services/ndt-advanced.jpg",
+    image: "/images/services/ndt-advanced.jpg",
   },
   {
     slug: "ndt-conventional",
@@ -81,7 +81,7 @@ export const SERVICES: Service[] = [
       "Visual Testing (VT) and basic material verification",
     ],
     industries: ["Fabrication", "Pipelines", "Pressure Equipment", "Structural"],
-    image: "/src/images/services/ndt-advanced.jpg",
+    image: "/images/services/ndt-advanced.jpg",
   },
   {
     slug: "ndt-advanced",
@@ -97,7 +97,7 @@ export const SERVICES: Service[] = [
       "Advanced corrosion mapping and automated UT",
     ],
     industries: ["Refining", "Petrochemical", "Power Generation", "Manufacturing"],
-    image: "/src/images/services/ndt-advanced.jpg",
+    image: "/images/services/ndt-advanced.jpg",
   },
   {
     slug: "inspection-engineering",
@@ -113,7 +113,7 @@ export const SERVICES: Service[] = [
       "Technical support for regulators and insurers",
     ],
     industries: ["Refining", "Upstream", "Chemicals", "Power"],
-    image: "/src/images/services/ndt-advanced.jpg",
+    image: "/images/services/ndt-advanced.jpg",
   },
 ];
 

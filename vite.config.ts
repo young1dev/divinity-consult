@@ -5,11 +5,28 @@
 //     error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import sitemap from 'vite-plugin-sitemap';
 
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+  },
+    vite: {
+    plugins: [
+      sitemap({
+        hostname: 'https://divinityconsult.org',
+        dynamicRoutes: [
+          '/',
+          '/about',
+          '/services',
+          '/contact',
+          '/services/ndt-advanced',
+          '/services/qa-qc',
+          // Add whatever other service paths you have here!
+        ],
+      }),
+    ],
   },
 });

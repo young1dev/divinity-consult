@@ -4,10 +4,12 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import ReactGA from 'react-ga4';
 
 import appCss from "../styles.css?url";
 import { SiteNav } from "../components/SiteNav";
@@ -135,6 +137,16 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  const location = useLocation();
+
+  // Track page views automatically whenever the URL path changes
+  useEffect(() => {
+    ReactGA.send({ 
+      hitType: 'pageview', 
+      page: location.pathname + location.search 
+    });
+  }, [location]);
 
   return (
     <QueryClientProvider client={queryClient}>

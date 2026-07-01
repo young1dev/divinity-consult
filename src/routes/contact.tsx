@@ -1,14 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState, ChangeEvent, FormEvent } from "react";
-
+import ReactGA from "react-ga4";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Divinity Consult" },
-      { name: "description", content: "Brief our inspection, integrity and rope-access team. 24/7 standby across UK & EU." },
+      {
+        name: "description",
+        content:
+          "Brief our inspection, integrity and rope-access team. 24/7 standby across UK & EU.",
+      },
       { property: "og:title", content: "Contact — Divinity Consult" },
-      { property: "og:description", content: "Brief our crew. We'll respond inside a working day." },
+      {
+        property: "og:description",
+        content: "Brief our crew. We'll respond inside a working day.",
+      },
     ],
     links: [{ rel: "canonical", href: "/contact" }],
   }),
@@ -60,6 +67,12 @@ function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+      //GTAG analytics for form event
+      ReactGA.event({
+        category: "Inquiry",
+        action: "Form_Submit",
+        label: "Contact Us Page Form",
+      });
 
       if (response.ok) {
         setSent(true);
@@ -69,7 +82,9 @@ function Contact() {
         throw new Error();
       }
     } catch (err) {
-      setErrorMsg("Failed to deliver brief. Please try emailing hello@divinityconsult.co directly.");
+      setErrorMsg(
+        "Failed to deliver brief. Please try emailing hello@divinityconsult.co directly.",
+      );
     } finally {
       setIsSending(false);
     }
@@ -78,21 +93,29 @@ function Contact() {
   return (
     <div className="bg-[#F6F7F8] text-foreground min-h-screen">
       <section className="px-6 md:px-10 pt-40 pb-16">
-        <div className="font-mono text-xs uppercase tracking-widest mb-6">§ Contact — Throw us a line</div>
+        <div className="font-mono text-xs uppercase tracking-widest mb-6">
+          § Contact — Throw us a line
+        </div>
         <motion.h1
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7 }}
           className="font-display uppercase text-[16vw] md:text-[12vw] leading-[0.9]!"
         >
-          Protect<br />what you've<br /><span className="italic text-acid">built.</span>
+          Protect
+          <br />
+          what you've
+          <br />
+          <span className="italic text-acid">built.</span>
         </motion.h1>
       </section>
 
       <section className="px-6 md:px-10 py-16 grid grid-cols-1 lg:grid-cols-2 gap-16">
         {/* FORM */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="font-mono text-xs uppercase tracking-widest opacity-70 mb-2">§ Project Enquiry</div>
+          <div className="font-mono text-xs uppercase tracking-widest opacity-70 mb-2">
+            § Project Enquiry
+          </div>
           {(
             [
               { id: "name", l: "Your name", t: "text" },
@@ -102,7 +125,10 @@ function Contact() {
             ] as const
           ).map((f) => (
             <div key={f.id}>
-              <label htmlFor={f.id} className="block font-mono text-[10px] uppercase tracking-widest mb-2">
+              <label
+                htmlFor={f.id}
+                className="block font-mono text-[10px] uppercase tracking-widest mb-2"
+              >
                 {f.l}
               </label>
               <input
@@ -117,7 +143,10 @@ function Contact() {
             </div>
           ))}
           <div>
-            <label htmlFor="scope" className="block font-mono text-[10px] uppercase tracking-widest mb-2">
+            <label
+              htmlFor="scope"
+              className="block font-mono text-[10px] uppercase tracking-widest mb-2"
+            >
               Scope of work
             </label>
             <textarea
@@ -138,7 +167,11 @@ function Contact() {
             disabled={isSending || sent}
             className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-4 font-mono text-xs uppercase tracking-widest hover:bg-background hover:text-foreground transition border border-foreground disabled:opacity-60"
           >
-            {isSending ? "Sending..." : sent ? "Enquiry received — our team will respond" : "Send brief ↗"}
+            {isSending
+              ? "Sending..."
+              : sent
+                ? "Enquiry received — our team will respond"
+                : "Send brief ↗"}
           </button>
         </form>
 
@@ -162,8 +195,18 @@ function Contact() {
           <div>
             <div className="text-xs uppercase opacity-60 mb-2">Accreditations</div>
             <div className="flex flex-wrap gap-2">
-              {["IRATA 7891", "ISO 9001", "ISO 45001", "PCN", "ASNT", "FROSIO", "SafeContractor"].map((c) => (
-                <span key={c} className="border border-foreground px-3 py-1 text-xs uppercase">{c}</span>
+              {[
+                "IRATA 7891",
+                "ISO 9001",
+                "ISO 45001",
+                "PCN",
+                "ASNT",
+                "FROSIO",
+                "SafeContractor",
+              ].map((c) => (
+                <span key={c} className="border border-foreground px-3 py-1 text-xs uppercase">
+                  {c}
+                </span>
               ))}
             </div>
           </div>

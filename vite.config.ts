@@ -13,20 +13,20 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
-    vite: {
-    plugins: [
-      sitemap({
-        hostname: 'https://divinityconsult.org',
-        dynamicRoutes: [
-          '/',
-          '/about',
-          '/services',
-          '/contact',
-          '/services/ndt-advanced',
-          '/services/qa-qc',
-          // Add whatever other service paths you have here!
-        ],
-      }),
-    ],
-  },
+  //   vite: {
+  //   plugins: [
+  //     sitemap({
+  //       hostname: 'https://divinityconsult.org',
+  //       dynamicRoutes: [
+  //         '/',
+  //         '/about',
+  //         '/services',
+  //         '/contact',
+  //         '/services/ndt-advanced',
+  //         '/services/qa-qc',
+  //         // Add whatever other service paths you have here!
+  //       ],
+  //     }),
+  //   ],
+  // },
 });

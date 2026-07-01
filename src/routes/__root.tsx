@@ -13,6 +13,13 @@ import appCss from "../styles.css?url";
 import { SiteNav } from "../components/SiteNav";
 import { SiteFooter } from "../components/SiteFooter";
 
+declare global {
+  interface Window {
+    dataLayer?: any[];
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -23,10 +30,7 @@ function NotFoundComponent() {
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
+          <Link to="/" className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
             Go home
           </Link>
         </div>
@@ -38,9 +42,9 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
- useEffect(() => {
-  console.error(error);
-}, [error]);
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -61,10 +65,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           >
             Try again
           </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
+          <a href="/" className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent">
             Go home
           </a>
         </div>
@@ -73,58 +74,22 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+// ✅ REMOVED raw code strings from scripts loop to prevent production hydration errors
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Divinity Consult — Engineering Inspection & Asset Integrity" },
-      { 
-        name: "description", 
-        content: "Independent engineering inspection, NDT, conventional & advanced testing, and asset integrity engineering services aligned with global API standards." 
+      {
+        name: "description",
+        content: "Independent engineering inspection, NDT, conventional & advanced testing, and asset integrity engineering services aligned with global API standards.",
       },
       { name: "author", content: "Divinity Consult" },
-      
-      // Open Graph (Facebook / LinkedIn Optimization)
-      { property: "og:title", content: "Divinity Consult — Engineering Inspection & Asset Integrity" },
-      { 
-        property: "og:description", 
-        content: "Independent engineering inspection, NDT testing, and asset integrity engineering services aligned with global standards." 
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://divinityconsult.org" },
-      { property: "og:image", content: "https://divinityconsult.org/og-image.jpg" }, // Make sure to add an og-image to your public folder later!
-      
-      // Twitter Card Integration
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Divinity Consult — Engineering Inspection & Asset Integrity" },
-      { name: "twitter:description", content: "Independent engineering inspection, NDT, and asset integrity engineering services." },
-      { name: "twitter:image", content: "https://divinityconsult.org/og-image.jpg" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      {
-        rel: "icon",
-        type: "image/svg+xml",
-        href: "/favicon.svg", // Adjust name/extension if you are using a standard .ico file instead
-      },
-    ],
-    scripts: [
-      {
-        src: "https://googletagmanager.com",
-        async: true,
-      },
-      {
-        children: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-E9BEV0105T', { send_page_view: false });
-        `,
-      },
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
     ],
   }),
   shellComponent: RootShell,
@@ -148,6 +113,45 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function RootComponent() {
+  const router = useRouter();
+  const TRACKING_ID = "G-E9BEV0105T";
+
+  // ✅ THE PRODUCTION PROTECTION LAYER: Only executes safely inside the client browser environment
+  useEffect(() => {
+    if (typeof window === "undefined" || document.getElementById("google-tag-manager-script")) return;
+
+    // 1. Mount the core Google tracking tag
+    const script1 = document.createElement("script");
+    script1.id = "google-tag-manager-script";
+    script1.async = true;
+    script1.src = `https://googletagmanager.com{TRACKING_ID}`;
+    document.head.appendChild(script1);
+
+    // 2. Initialize window object data layers
+    const script2 = document.createElement("script");
+    script2.innerHTML = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${TRACKING_ID}', { send_page_view: false });
+    `;
+    document.head.appendChild(script2);
+  }, []);
+
+  // 3. Dynamic layout routing map loop for Analytics
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const unsubscribe = router.subscribe("onResolved", (event) => {
+      if (window.gtag) {
+        window.gtag("config", TRACKING_ID, {
+          page_path: event.to.pathname,
+        });
+      }
+    });
+    return () => unsubscribe();
+  }, [router]);
+
   const { queryClient } = Route.useRouteContext();
 
   return (

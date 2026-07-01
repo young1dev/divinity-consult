@@ -68,21 +68,6 @@ function Contact() {
         body: JSON.stringify(formData),
       });
 
-      const globalWindow = window as any;
-
-      if (globalWindow.gtag) {
-        // 3. Trigger your custom submit event to Google Analytics
-        globalWindow.gtag("event", "submit_contact_form", {
-          event_category: "Contact",
-          event_label: "Divinity Consult Technical Assessment Request",
-          // Optional: you can pass non-sensitive info to GA4 if you want to segment data
-          form_location: window.location.pathname,
-        });
-        console.log("Google Analytics submit event tracked successfully!");
-      } else {
-        console.log("Google Tag is not loaded yet (or blocked by an ad-blocker).");
-      }
-
       if (response.ok) {
         setSent(true);
         // Clear out the form inputs on successful send

@@ -54,6 +54,7 @@ function ServiceDetail() {
             <motion.img
               src={s.image}
               alt={s.t}
+              loading = "lazy"
               className="absolute inset-0 w-full h-full object-cover"
               initial={{ scale: 1.05, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}

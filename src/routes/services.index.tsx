@@ -38,7 +38,7 @@ function ServicesIndex() {
           <>
             Inspection and integrity services for
             <br />
-            critical assets.
+           <span className="text-acid italic"> critical assets.</span>
           </>
         }
         intro="Divinity Consult provides independent inspection, asset integrity management, rope access execution, and advanced non-destructive testing services for onshore and offshore industrial assets. We support operators, EPCs and asset owners with compliant inspection and engineering assessment across the full asset lifecycle."

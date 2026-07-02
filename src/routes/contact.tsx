@@ -95,7 +95,7 @@ function Contact() {
     } catch (err) {
       console.error("Submission failed:", err);
       setErrorMsg(
-        "Failed to deliver brief. Please try emailing hello@divinityconsult.co directly.",
+        "Failed to deliver brief. Please try emailing hello@divinityconsult.org directly.",
       );
     } finally {
       setIsSending(false);
@@ -191,8 +191,8 @@ function Contact() {
         <div className="font-mono text-sm space-y-10">
           <div>
             <div className="text-xs uppercase opacity-60 mb-2">Email</div>
-            <a href="mailto:hello@divinityconsult.co" className="underline text-xl md:text-2xl">
-              hello@divinityconsult.co
+            <a href="mailto:hello@divinityconsult.org" className="underline text-xl md:text-2xl">
+              hello@divinityconsult.org
             </a>
           </div>
           <div>

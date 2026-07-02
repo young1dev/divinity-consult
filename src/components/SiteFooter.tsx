@@ -6,10 +6,10 @@ export function SiteFooter() {
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://divinityconsult.co/#organization",
+        "@id": "https://divinityconsult.org/#organization",
         name: "Divinity Consult",
-        url: "https://divinityconsult.co",
-        email: "hello@divinityconsult.co",
+        url: "https://divinityconsult.org",
+        email: "hello@divinityconsult.org",
         telephone: "+44-20-7946-0710",
         address: {
           "@type": "PostalAddress",
@@ -22,21 +22,21 @@ export function SiteFooter() {
       },
       {
         "@type": "WebPage",
-        "@id": "https://divinityconsult.co/#legal",
+        "@id": "https://divinityconsult.org/#legal",
         name: "Legal Information",
         isPartOf: {
-          "@id": "https://divinityconsult.co/#organization",
+          "@id": "https://divinityconsult.org/#organization",
         },
         hasPart: [
           {
             "@type": "WebPage",
             name: "Privacy Policy",
-            url: "https://divinityconsult.co/privacy-policy",
+            url: "https://divinityconsult.org/privacy-policy",
           },
           {
             "@type": "WebPage",
             name: "Terms of Service",
-            url: "https://divinityconsult.co/terms",
+            url: "https://divinityconsult.org/terms",
           },
         ],
       },
@@ -85,7 +85,7 @@ export function SiteFooter() {
           <div className="font-mono text-xs uppercase tracking-widest mb-4">Contact</div>
           <ul className="space-y-2">
             <li>
-              <a href="mailto:hello@divinityconsult.co">hello@divinityconsult.co</a>
+              <a href="mailto:hello@divinityconsult.org">hello@divinityconsult.org</a>
             </li>
             <li>+44 (0)20 7946 0710</li>
             <li>

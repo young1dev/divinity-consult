@@ -59,7 +59,7 @@ function ServicesIndex() {
               <Link
                 to="/services/$slug"
                 params={{ slug: s.slug }}
-                className="p-8 min-h-[320px] flex flex-col justify-between"
+                className="p-8 min-h-80 flex flex-col justify-between"
               >
                 <div className="flex justify-between font-mono text-xs uppercase">
                   <span>{s.n}</span>

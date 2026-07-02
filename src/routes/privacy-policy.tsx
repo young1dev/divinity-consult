@@ -70,8 +70,8 @@ function PrivacyPolicy() {
           </h2>
           <p>
             For privacy-related enquiries, contact{" "}
-            <a href="mailto:hello@divinityconsult.co" className="underline">
-              hello@divinityconsult.co
+            <a href="mailto:hello@divinityconsult.org" className="underline">
+              hello@divinityconsult.org
             </a>
             .
           </p>

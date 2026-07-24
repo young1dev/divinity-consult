@@ -20,7 +20,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       from: 'Website Form <info@mail.divinityconsult.org>', 
       to: ['hello@divinityconsult.org'], 
       replyTo: email, 
-      subject: `⚡ New Project Brief from ${name} (${company})`,
+      subject: `New Project Brief from ${name} (${company})`,
       html: `
         <div style="font-family: monospace; padding: 20px; background-color: #F6F7F8; color: #000; border: 1px solid #000;">
           <h2 style="text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 10px;">§ New Website Enquiry</h2>

@@ -21,7 +21,7 @@ export function PageHero({
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
-        className="font-display uppercase text-[14vw] md:text-[10vw] leading-[0.9]!"
+        className="font-display uppercase  md:text-[10vw] text-[clamp(2.25rem,6vw,4.5rem)] leading-tight!"
       >
         {title}
       </motion.h1>

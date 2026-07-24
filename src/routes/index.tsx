@@ -29,7 +29,8 @@ export const Route = createFileRoute("/")({
           "QA/QC, asset integrity management, rope access, and advanced NDT for the assets that can't afford to fail.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://divinityconsult.org/" },
+      { property: "og:locale", content: "en_CA" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -68,7 +69,7 @@ const STATS = [
 function Index() {
   const heroRef = useRef<HTMLDivElement>(null);
 
-  const faqs = FAQS.filter(f => f.scope === "global");
+  const faqs = FAQS.filter((f) => f.scope === "global");
 
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 0.4], [0, -200]);
@@ -121,13 +122,17 @@ function Index() {
 
         <motion.h1
           style={{ y: heroY, rotate: heroRot }}
-          className="font-display uppercase text-[18vw] md:text-[15vw] leading-[0.9]! md:leading-[0.9]"
+          className="font-display uppercase text-[18vw] md:text-[6.5rem] lg:text-[10rem] leading-[0.9]! md:leading-[0.9]"
         >
           Industrial
           <br />
           inspection
           <br />
-          <span className="italic text-acid">without compromise.</span>
+          <span className="italic text-acid">
+            without
+            <br />
+            compromise.
+          </span>
         </motion.h1>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl">
@@ -265,7 +270,7 @@ function Index() {
           ))}
         </div>
       </section>
-      
+
       <FAQSection faqs={faqs} />
 
       {/* CTA */}

@@ -6,57 +6,82 @@ import { FAQS } from "@/lib/faqs";
 import { FAQSection } from "@/components/FAQSection";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Divinity Consult — Asset Integrity, NDT & Rope Access Inspection" },
-      {
-        name: "description",
-        content:
-          "Divinity Consult delivers QA/QC, asset integrity management, rope access inspection, and conventional & advanced NDT services for critical industrial assets.",
-      },
-      {
-        name: "keywords",
-        content:
-          "asset integrity management, rope access inspection, NDT services, non destructive testing, QA QC inspection, advanced NDT, PAUT, TOFD, industrial inspection",
-      },
-      {
-        property: "og:title",
-        content: "Divinity Consult — Asset Integrity, NDT & Rope Access Inspection",
-      },
-      {
-        property: "og:description",
-        content:
-          "QA/QC, asset integrity management, rope access, and advanced NDT for the assets that can't afford to fail.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://divinityconsult.org/" },
-      { property: "og:locale", content: "en_CA" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          name: "Divinity Consult",
-          description:
-            "Asset integrity management, QA/QC, rope access inspection, and conventional & advanced non-destructive testing (NDT) services.",
-          areaServed: "Worldwide",
-          serviceType: [
-            "Asset Integrity Management",
-            "Quality Assurance and Quality Control",
-            "Rope Access Inspection",
-            "Conventional Non-Destructive Testing",
-            "Advanced Non-Destructive Testing",
-            "Inspection Engineering",
-          ],
-        }),
-      },
-    ],
-  }),
-  component: Index,
+ head: () => ({
+  meta: [
+    { title: "Divinity Consult — Asset Integrity & Advanced NDT Inspection" },
+    {
+      name: "description",
+      content:
+        "Divinity Consult delivers QA/QC, asset integrity management, rope access inspection, and conventional & advanced NDT services for critical industrial assets.",
+    },
+    {
+      name: "keywords",
+      content:
+        "asset integrity management, rope access inspection, NDT services, non destructive testing, QA QC inspection, advanced NDT, PAUT, TOFD, industrial inspection",
+    },
+    { name: "theme-color", content: "#09090b" },
+    
+    // Open Graph
+    { property: "og:site_name", content: "Divinity Consult" },
+    {
+      property: "og:title",
+      content: "Divinity Consult — Asset Integrity & Advanced NDT Inspection",
+    },
+    {
+      property: "og:description",
+      content:
+        "QA/QC, asset integrity management, rope access, and advanced NDT for assets that can't afford to fail.",
+    },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: "https://divinityconsult.org/" },
+    { property: "og:image", content: "https://divinityconsult.org/og-image.png" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:locale", content: "en_US" },
+
+    // Twitter / X
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "Divinity Consult — Asset Integrity & Advanced NDT Inspection" },
+    {
+      name: "twitter:description",
+      content:
+        "QA/QC, asset integrity management, rope access, and advanced NDT for assets that can't afford to fail.",
+    },
+    { name: "twitter:image", content: "https://divinityconsult.org/og-image.png" },
+  ],
+  links: [
+    { rel: "canonical", href: "https://divinityconsult.org/" },
+    { rel: "icon", href: "/favicon.ico", sizes: "any" },
+    { rel: "icon", type: "image/png", sizes: "32x32", href:"/favicon-32x32.png" },
+    { rel: "icon", type: "image/png", sizes: "16x16", href:"/favicon-16x16.png" },
+    { rel: "apple-touch-icon", sizes: "180x180", href:"/apple-touch-icon.png" },
+    { rel: "manifest", href:"/site.webmanifest" },
+  ],
+  scripts: [
+    {
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        name: "Divinity Consult",
+        url: "https://divinityconsult.org/",
+        logo: "https://divinityconsult.org/favicon-32x32.png",
+        description:
+          "Asset integrity management, QA/QC, rope access inspection, and conventional & advanced non-destructive testing (NDT) services.",
+        areaServed: "Worldwide",
+        serviceType: [
+          "Asset Integrity Management",
+          "Quality Assurance and Quality Control",
+          "Rope Access Inspection",
+          "Conventional Non-Destructive Testing",
+          "Advanced Non-Destructive Testing",
+          "Inspection Engineering",
+        ],
+      }),
+    },
+  ],
+}),
+component: Index,
 });
 
 const STATS = [
